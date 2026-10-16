@@ -1,0 +1,29 @@
+name: Repo checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: README must exist
+        run: test -f README.md
+
+      - name: No .env file may be committed
+        run: |
+          if git ls-files | grep -E '(^|/)\.env$'; then
+            echo "A .env file is tracked. Remove it and rotate any secrets."
+            exit 1
+          fi
+
+      - name: Show tracked files
+        run: git ls-files
+
+      - name: Python files must have valid syntax
+        run: python3 -m compileall -q .
