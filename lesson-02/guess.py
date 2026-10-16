@@ -1,14 +1,20 @@
-tries = 0
-while True:
-    if tries >= 5:
-        print("Out of tries")
-        break
-    guess = int(input("Guess the number : "))
-    tries += 1
+MAX_TRIES = 5
+SECRET_NUMBER = 42
+curr_try = 0
+while curr_try < MAX_TRIES:
+    while True:
+        try:
+            guess = int(input("Guess the number : "))
+        except ValueError:
+            print("Enter Whole numbers only")
+        else:
+            break
+    curr_try += 1
     if guess > 42:
-        print("Higher")
+        print("Too High")
     elif guess < 42:
-        print("Lower")
+        print("Too Low")
     else:
-        print(f"Correct! You Won. You guessed it in {tries} tries.")
+        print(f"Correct! You Won. You guessed it in {curr_try} tries.")
         break
+print("Out of tries")
