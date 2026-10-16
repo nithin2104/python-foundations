@@ -4,9 +4,12 @@ while True:
     except ValueError:
         print("Please Enter a number between 0 to 100")
         continue
-    if marks < 0 or marks > 100:
-        print("Invalid Marks")
-    elif marks >= 90:
+    else:
+        if marks < 0 or marks > 100:
+            print("Invalid Marks")
+            print("Please Enter a number between 0 to 100")
+            continue
+    if marks >= 90:
         print("A")
     elif marks >= 75:
         print("B")
