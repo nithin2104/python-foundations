@@ -10,16 +10,15 @@ while curr_try < MAX_TRIES:
         else:
             break
     curr_try += 1
-    if guess > 42:
+    if guess > SECRET_NUMBER:
         print("Too High")
-    elif guess < 42:
+    elif guess < SECRET_NUMBER:
         print("Too Low")
     else:
         if curr_try == 1:
             print(f"Correct! You Won. You guessed it in {curr_try} try.")
         else:
             print(f"Correct! You Won. You guessed it in {curr_try} tries.")
-
         break
-if curr_try > MAX_TRIES:
+else:
     print("Out of tries")

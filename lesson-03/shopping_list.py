@@ -19,6 +19,7 @@ while True:
         item = input("Enter Item name to add into list : ").strip()
         if item == "":
             print("Please enter a Item name, It can not be empty")
+            continue
         items.append(item)
     elif option == 2:
         # Remove Item
@@ -27,22 +28,22 @@ while True:
             continue
         else:
             for index, name in enumerate(items, start=1):
-                print(f"{name}. {item}")
+                print(f"{index}. {name}")
 
         while True:
             try:
-                remove_item = int(input("Enter item name from list to remove the item from list : "))
+                remove_item = int(input("Enter item number from list to remove the item from list : "))
             except ValueError:
-                print("Entered Item not in the list Please check the list")
+                print("Wrong Value. Entered Item number not in the list Please check the list")
                 continue
             else:
-                if remove_item - 1 not in range(len(items)):
-                    print("Entered Item not in the list Please check the list")
-                    continue
-                else:
+                if remove_item - 1 in range(0, len(items)):
                     break
-        items.pop(remove_item)
-        print(f"{remove_item} has been removed from shopping list")
+                else:
+                    print("Entered Item number not in the list Please check the list")
+                    continue
+        removed_item = items.pop(remove_item - 1)
+        print(f"{remove_item}. {removed_item} has been removed from shopping list")
     elif option == 3:
         # Show Items
         if len(items) == 0:
